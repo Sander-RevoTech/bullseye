@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        
+        <!-- partner control panel -->
+        <record id="view_res_partner_filter_tags" model="ir.ui.view">
+            <field name="name">view_res_partner_filter_tags</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+
+                <field name="category_id" position="after">
+                    <field name="supplier_tags" filter_domain="[('supplier_tags', 'child_of', self)]"/>
+                    <field name="customer_tags" filter_domain="[('customer_tags', 'child_of', self)]"/>
+                </field>
+
+                <filter name="group_country" position="after">
+                    <filter name="group_supplier_tags"  context="{'group_by': 'supplier_tags'}"/>
+                    <filter name="group_customer_tags"  context="{'group_by': 'customer_tags'}"/>
+                </filter>
+
+            </field>
+        </record>
+
+
+        <!-- partner category form -->
+        <record id="view_partner_category_form_tags" model="ir.ui.view">
+            <field name="name">res_parnter_view_tags</field>
+            <field name="model">res.partner.category</field>
+            <field name="inherit_id" ref="base.view_partner_category_form" />
+            <field name="arch" type="xml">
+
+                <field name="name" position="after">
+                    <field name="supplier_tag"  />
+                    <field name="customer_tag"  />
+                </field>
+
+            </field>
+        </record>
+
+        <!-- parnter contact form -->
+        <record id="res_parnter_view_tags" model="ir.ui.view">
+            <field name="name">res_parnter_view_tags</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+
+                <field name="ref" position="before">
+                    <field name="supplier_tags" options="{'no_create': True, 'color_field': 'color'}" widget="many2many_tags" />
+                    <field name="customer_tags" options="{'no_create': True, 'color_field': 'color'}" widget="many2many_tags" />
+                </field>
+
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

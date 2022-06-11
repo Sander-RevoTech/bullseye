@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="view_company_form_ext_accounttant" model="ir.ui.view">
+            <field name="name">view_company_form_ext_accounttant</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+
+                <field name="email" position="after">
+                    <field name="ext_accounttant_invoice_email" />
+                    <field name="ext_accounttant_bill_email" />
+                </field>
+
+
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

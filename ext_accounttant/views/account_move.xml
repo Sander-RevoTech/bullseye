@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_move_sent_to_accounttant_action" model="ir.actions.server">
+            <field name="name">Send To Accounttant</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records: 
+                    records.send_to_accounttant()
+            </field>
+        </record>
+
+        <record id="view_move_form_sent_accounttant" model="ir.ui.view">
+            <field name="name">view_move_form_sent_accounttant</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+
+                <field name="to_check" position="after">
+                    <field name="sent_to_accounttant" />
+                </field>
+
+
+            </field>
+        </record>
+
+        <record id="view_company_form_ext_accounttant" model="ir.ui.view">
+            <field name="name">view_company_form_ext_accounttant</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+
+                <field name="email" position="after">
+                    <field name="ext_accounttant_invoice_email" />
+                    <field name="ext_accounttant_bill_email" />
+                </field>
+
+
+            </field>
+        </record>
+      
+    </data>
+
+
+</odoo>

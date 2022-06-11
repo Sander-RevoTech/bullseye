@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="sale_order_list_ext_inherit_sale_order" model="ir.ui.view">
+            <field name="name">sale_order_list_ext_inherit_sale_order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='name']" position="after">
+                    <field name="client_order_ref" optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_quotation_list_ext_inherit_sale_order" model="ir.ui.view">
+            <field name="name">sale_quotation_list_ext_inherit_sale_order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field[@name='name']" position="after">
+                    <field name="client_order_ref" optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_oredr_sale_stock" model="ir.ui.view">
+            <field name="name">view_oredr_sale_stock</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+
+                <!-- Credit note button -->
+                <button name="291" position="after">
+                    <field name="show_create_credit" invisible="1" />
+                    <button name="action_create_credit" string="Create Credit" type="object" class="btn-primary" data-hotkey="r" attrs="{'invisible': [('show_create_credit', '!=', True)]}"/>
+                </button>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <xpath expr="//field[@name='client_order_ref']" position="move"/>
+                </xpath>
+
+                <xpath expr="//group[@name='sale_header']" position="after">
+                    <xpath expr="//group[@name='sale_shipping']" position="move"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

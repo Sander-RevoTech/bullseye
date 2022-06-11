@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- partner control panel -->
+        <record id="view_picking_internal_search_transit" model="ir.ui.view">
+            <field name="name">view_picking_internal_search_transit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search" />
+            <field name="arch" type="xml">
+
+                <filter name="available" position="after">
+                    <filter name="in_transit" string="Transit" domain="[('state', '=', 'in_transit')]" help="Transit Moves" />
+                </filter>
+                
+            </field>
+        </record>
+
+        <record id="view_picking_type_form_transit" model="ir.ui.view">
+            <field name="name">view_picking_type_form_transit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+
+                <button name="button_validate" position="before">
+                    <field name="show_transit" invisible="1" />
+                    <field name="show_transit_redo" invisible="1" />
+                    <button name="action_transit" attrs="{'invisible': [('show_transit', '=', False)]}" string="Set Transit" groups="base.group_user" type="object" data-hotkey="v" class="btn btn-primary oe_highlight" />
+                    <button name="action_transit_redo" attrs="{'invisible': [('show_transit_redo', '=', False)]}" string="Redo Transit" groups="base.group_user" type="object" data-hotkey="v" class="btn btn-danger oe_highlight" />
+                </button>
+
+                <button name="action_cancel" position="replace">
+                    <button name="action_cancel" attrs="{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'draft', 'waiting', 'in_transit'))]}" string="Cancel" groups="base.group_user" type="object" data-hotkey="z" class="btn-danger oe_highlight" />
+                </button>
+
+            </field>
+        </record>
+
+    </data>
+
+</odoo>

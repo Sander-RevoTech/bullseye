@@ -16,3 +16,6 @@ class PurchaseOrder(models.Model):
                             line.product_packaging_id = pack.id
                             line.product_qty = pack.qty
                             line.product_packaging_qty = 1
+
+    def _compute_date_planned(self):
+        self.date_planned = self.date_planned

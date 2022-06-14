@@ -32,7 +32,7 @@
             <field name="arch" type="xml">
 
                 <!-- Credit note button -->
-                <button name="291" position="after">
+                <button name="action_unlock" position="after">
                     <field name="show_create_credit" invisible="1" />
                     <button name="action_create_credit" string="Create Credit" type="object" class="btn-primary" data-hotkey="r" attrs="{'invisible': [('show_create_credit', '!=', True)]}"/>
                 </button>

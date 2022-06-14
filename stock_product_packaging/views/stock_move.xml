@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="view_picking_stock_move_form_product_packaging" model="ir.ui.view">
+            <field name="name">view_picking_stock_move_form_product_packaging</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_packaging_id']" position="before">
+                    <field name="product_package_qty_demand" optional="hide" readonly="1"/>
+                    <field name="product_package_qty_reserved" optional="hide" readonly="1"/>
+                    <field name="product_package_qty_done" optional="hide" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+
+</odoo>

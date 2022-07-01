@@ -47,6 +47,8 @@ class StockPickingNotification(models.Model):
             'email_from': email_from,
             'email_to': mail_to,
             'subject': 'New Transfer: ' + self.name,
+            'auto_delete': True,
+            'is_notification': True,
             'body_html': body}
 
         mail = self.env['mail.mail'].create(mail_vals)
